@@ -9,3 +9,7 @@ eureka:
 spring:
   application:
     name: order-service
+
+product-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
