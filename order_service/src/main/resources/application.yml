@@ -9,6 +9,11 @@ eureka:
 spring:
   application:
     name: order-service
+  redis:
+    database: 0
+    host: 192.168.179.6
+    port: 6379
+    timeout: 2000
 
 product-service:
   ribbon:
@@ -18,5 +23,17 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 7000
+        readTimeout: 7000
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+#        timeout:
+#          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
