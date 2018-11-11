@@ -14,3 +14,6 @@ POST http://localhost:8781/api/v1/orders?userId=1&productId=1
         默认 1000毫秒
     3）execution.timeout.enabled 是否开启超时限制 （一定不要禁用）
     4）execution.isolation.semaphore.maxConcurrentRequests 隔离策略为 信号量的时候，如果达到最大并发数时，后续请求会被拒绝，默认是10
+6.hystrix dashboard访问入口
+    http://localhost:8781/hystrix
+    Hystrix Dashboard输入： http://localhost:8781/actuator/hystrix.stream 

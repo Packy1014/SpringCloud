@@ -34,11 +34,11 @@ public class ProductController {
 
     @GetMapping("products/{id}")
     public Product fingById(@PathVariable int id) {
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(5);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         Product product =new Product();
         BeanUtils.copyProperties(productService.findById(id), product);
         product.setName(product.getName() + " port: " + port);

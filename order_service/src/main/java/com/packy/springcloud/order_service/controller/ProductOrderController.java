@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +31,12 @@ public class ProductOrderController {
 
     @PostMapping("orders")
     @HystrixCommand(fallbackMethod = "saveOrderFail")
-    public Map<String, String> save(@RequestParam("userId") int userId, @RequestParam("productId") int productId) {
+    public Map<String, String> save(@RequestParam("userId") int userId, @RequestParam("productId") int productId, HttpServletRequest httpServletRequest) {
+        String token = httpServletRequest.getHeader("token");
+        String cookie = httpServletRequest.getHeader("cookie");
+        System.err.println("token=" + token);
+        System.err.println("cookie=" + cookie);
+
         Map<String, String> msg = new HashMap<>();
         msg.put("code", "0");
         msg.put("msg", "call save order successful, product id : " + productId + " user id : " + userId);
@@ -38,7 +44,7 @@ public class ProductOrderController {
         return msg;
     }
 
-    public Map<String, String> saveOrderFail(int userId, int productId) {
+    public Map<String, String> saveOrderFail(int userId, int productId, HttpServletRequest httpServletRequest) {
         //监控报警
         new Thread(() -> {
             String saveOrderKey = "save-order";
