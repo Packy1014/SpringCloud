@@ -1,6 +1,7 @@
 package com.packy.springcloud.order_service.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.packy.springcloud.order_service.domain.ProductOrder;
 import com.packy.springcloud.order_service.service.ProductOrderService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ProductOrderController {
         Map<String, String> msg = new HashMap<>();
         msg.put("code", "0");
         msg.put("msg", "call save order successful, product id : " + productId + " user id : " + userId);
-        productOrderService.save(userId, productId);
+        ProductOrder productOrder = productOrderService.save(userId, productId);
         return msg;
     }
 

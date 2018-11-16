@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("api/v1")
@@ -33,13 +32,13 @@ public class ProductController {
     }
 
     @GetMapping("products/{id}")
-    public Product fingById(@PathVariable int id) {
+    public Product findById(@PathVariable int id) {
 //        try {
 //            TimeUnit.SECONDS.sleep(5);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        Product product =new Product();
+        Product product = new Product();
         BeanUtils.copyProperties(productService.findById(id), product);
         product.setName(product.getName() + " port: " + port);
         return product;

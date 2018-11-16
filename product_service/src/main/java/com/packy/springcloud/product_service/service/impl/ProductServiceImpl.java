@@ -2,6 +2,8 @@ package com.packy.springcloud.product_service.service.impl;
 
 import com.packy.springcloud.product_service.domain.Product;
 import com.packy.springcloud.product_service.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Map;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    Logger logger = LoggerFactory.getLogger(getClass());
     private final static Map<Integer, Product> productMap;
 
     static {
@@ -26,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> listProducts() {
+        logger.info("list products");
         return new ArrayList<>(productMap.values());
     }
 
