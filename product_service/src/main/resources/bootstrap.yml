@@ -1,0 +1,18 @@
+#server:
+#  port: 8771
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: product-service
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      profile: test
+      label: master
