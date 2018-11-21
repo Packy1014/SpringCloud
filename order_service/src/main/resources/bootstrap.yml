@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: order-service
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      profile: dev
+      label: master

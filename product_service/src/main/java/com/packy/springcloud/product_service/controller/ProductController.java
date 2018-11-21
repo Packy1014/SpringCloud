@@ -5,6 +5,7 @@ import com.packy.springcloud.product_service.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
+@RefreshScope
 public class ProductController {
 
     @Value("${server.port}")
     private String port;
+
+    @Value("${env}")
+    private String env;
 
     private final ProductService productService;
 
@@ -40,7 +45,7 @@ public class ProductController {
 //        }
         Product product = new Product();
         BeanUtils.copyProperties(productService.findById(id), product);
-        product.setName(product.getName() + " port: " + port);
+        product.setName(product.getName() + " port: " + port + "| env: " + env);
         return product;
     }
 

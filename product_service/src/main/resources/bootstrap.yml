@@ -16,3 +16,13 @@ spring:
         enabled: true
       profile: test
       label: master
+  rabbitmq:
+    host: 192.168.179.6
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
